@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class TarefaController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     
         
@@ -20,7 +20,14 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        if(auth()->check()) {
+            $id = auth()->user()->id;
+            $name = auth()->user()->name;
+            $email = auth()->user()->email;
+            return 'Você esta logado';
+        } else {
+            return 'você não esta logado';
+        }
     }
 
     /**
